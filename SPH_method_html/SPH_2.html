@@ -35,18 +35,42 @@
     <div style="margin-right:200px">
 
     <strong>支配方程式</strong><br>
-     　Coming soon
-     　
+     　支配方程式は以下に示す連続の式とNavier-Stokes方程式である．<br><br>
+     <div align="center">
+       $\frac{D\rho}{Dt}=-\rho\nabla\cdot\boldsymbol{u}$<br><br>
+       $\frac{D\boldsymbol{u}}{Dt}=-\frac{1}{\rho}\nabla p+\frac{\mu}{\rho}\nabla^2\boldsymbol{u}+\boldsymbol{g}$<br><br>
+     <div align="left">
+      この2つの方程式をSPH法に基づいて離散化することを考える．物理量の空間微分は<br><br>
+     <div align="center">
+       $\nabla\cdot f(\boldsymbol{x}_i)=\frac{1}{\rho_i}\left(\sum_jm_j(f(\boldsymbol{x}_j)-f(\boldsymbol{x}_i))\right)\cdot\nabla W_{ij}$
+       <br><br>
+       $\nabla\cdot f(\boldsymbol{x}_i)=\rho_i\left(\sum_jm_j(\frac{f(\boldsymbol{x}_j)}{\rho_j^2}+\frac{f(\boldsymbol{x}_i)}{\rho_i^2})\right)\cdot\nabla W$
+       <br><br>
+    　<div align="left">
+      で定義されるため，連続の式とNavies-Stokes方程式はそれぞれ以下のように離散化される.<br><br>
+     <div align="center">
+      $\begin{align}
+      \frac{D\rho_i}{Dt}&=-\rho_i\frac{1}{\rho_i}\left(\sum_jm_j(\boldsymbol{u}_j-\boldsymbol{u}_i)\right)\cdot\nabla W_{ij}\\
+      &=\sum_jm_j\left(\boldsymbol{u}_i-\boldsymbol{u}_j\right)\cdot\nabla W_{ij}
+      \end{align}$
+      <br><br>
+      $\frac{D\boldsymbol{u}_i}{Dt}=-\sum_jm_j\left(\frac{p_i}{\rho_i^2}+\frac{p_j}{\rho_j^2}+\Pi_{ij}\right)\nabla W_{ij}+\boldsymbol{g}$
+      <br><br>
+     <div align="left">
+       ここで，$\Pi_{ij}$は以下に示す人工粘性である．<br><br>
+     <div align="center">
+       $\Pi_{ij}=\begin{cases}
+       \frac{-\alpha\bar{c}_{ij}\mu_{ij}}{\bar{\rho}_{ij}} & (\boldsymbol{u}_{ij}\cdot\boldsymbol{r}_{ij}<0)\\
+       0 & (\boldsymbol{u}_{ij}\cdot\boldsymbol{r}_{ij} \geq 0)
+       \end{cases}$<br><br>
+       $\mu_{ij}=\frac{\bar{h}_{ij}\boldsymbol{u}_{ij}\cdot\boldsymbol{r}_{ij}}{r_{ij}^2+\eta^2}$<br><br>
+       $\eta=0.01(\bar{h}_{ij})^2$<br><br>
 
-
-    <br><br>
-
-  <br>
   <div align="center">
     <hr width="300">
     <a href="SPH_1.html">Prev</a>
     <a href="../index.html">Top</a>
-    <a href="SPH_2.html">Next</a><br>
+    <a href="SPH_3.html">Next</a><br>
     <hr width="300">
 
 
