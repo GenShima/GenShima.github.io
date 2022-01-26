@@ -42,9 +42,9 @@
      　支配方程式は以下のとおりである．<br><br>
      <div align="center">
        $\frac{D\rho_i}{Dt}=-\rho\nabla\cdot\boldsymbol{u}_D$<br><br>
-       $\frac{D\boldsymbol{u}_{D\, i}}{Dt}=-n_w\frac{1}{\rho}\nabla p+n_w\boldsymbol{g}-an_w\boldsymbol{u}_d-bn_w\boldsymbol{u}_d|\boldsymbol{u}_d|$<br><br>
+       $\frac{D\boldsymbol{u}_{D\, i}}{Dt}=-n_w\frac{1}{\rho}\nabla p+n_w\boldsymbol{g}-an_w\boldsymbol{u}_D-bn_w\boldsymbol{u}_D|\boldsymbol{u}_D|$<br><br>
      <div align="left">
-      ここで，$n_w$は間隙率で，流体部分では1.0，多孔質体内では$n_w$となる．$a$，$b$はそれぞれ多孔質体内での抵抗に関する係数で以下のようにして求められる．<br><br>
+      ここで，$n_w$は間隙率で，流体部分では1.0，多孔質体内では$n_w$となる．$\boldsymbol{u}_D=n_w\boldsymbol{u}_{actual}$はダルシー流束，$a$，$b$はそれぞれ多孔質体内での抵抗に関する係数で以下のようにして求められる．<br><br>
      <div align="center">
        $a=\alpha\frac{\nu(1-n_w)^2}{n_w^3D_{50}^2}$<br><br>
        $b=\beta\frac{(1-n_w)}{n_w^3D_{50}}$<br><br>
@@ -60,17 +60,17 @@
       連続式の右辺第二項は，圧力撹乱を抑制する効果がある密度の拡散項で，これを<a href="https://www.researchgate.net/publication/242504905_Freesurface_flows_solved_by_means_of_SPH_schemes_with_numerical_diffusive_terms">δ-SPH法</a>という．δ-SPH法は数値的安定の抑制に効果的で広く用いられている．
       <br><br>
     <strong>境界条件</strong><br>
-    　流体粒子が多孔質体内に入る際，間隙率が1.0から$n_w$に変化する．この時に間隙率を不連続に変化させるのではなく連続的に変化させる方法が一般的に用いられている．まず補間点を初期粒子間隔より細かい解像度で配置し，位置によって間隙率を定義する．次に，流体粒子が移行層(図のTransitional zone)内にある場合，SPH補間
+    　流体粒子が多孔質体内に入る際，間隙率が1.0から$n_w$に変化する．このとき間隙率を不連続に変化させるのではなく連続的に変化させる方法が一般的に用いられている．まず補間点を初期粒子間隔より細かい解像度で配置し，位置によって間隙率を定義する．次に，流体粒子が移行層(下図のTransitional zone)内にある場合，SPH補間<br><br>
      <div align="center">
       $n_{w\, i}=\sum_j\frac{m_j}{\rho_j}n_{w\, j}W_{ij}$<br><br>
      <div align="left">
-       を用いて流体粒子の間隙率を決定する．こうすることで，間隙率を滑らかに変化させることができる．<br><br>
+       を用いて流体粒子の間隙率を決定する．以上のようにして間隙率を滑らかに変化させることができる．<br><br>
      <div align="center">
-       <img src="../img/boundary.png" width="250" height="225"><br><br>
+       <img src="../img/boundary.png" width="300" height="250"><br><br>
      <div align="left">
-     　このように支配方程式に新たな項をいくつか追加し，多孔質体がどのような形状で構成されているかを考えることなく，間隙率と平均径を与えるだけで流れを再現することができる．以下に計算結果を示す．多孔質体内では粒子が通りにくくなり，粒子間距離が増している様子が確認できる．<br><br><br><br>
+     　このように支配方程式に新たな項をいくつか追加し，多孔質体がどのような形状で構成されているかを考えることなく，間隙率と平均径を与えるだけで流れを再現することができる．以下に計算結果を示す．多孔質体内では粒子が通りにくくなることから，粒子間距離が増している様子が確認できる．<br><br>
     　<div align="center">
-      <img src="../gif/porous.gif" width="720" height="600"><br><br>
+      <img src="../gif/porous.gif" width="600" height="500"><br><br>
 
   <div align="center">
     <hr width="500">
