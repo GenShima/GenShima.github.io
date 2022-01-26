@@ -59,6 +59,9 @@
     　<div align="left">
       連続式の右辺第二項は，圧力撹乱を抑制する効果がある密度の拡散項で，これを<a href="https://www.researchgate.net/publication/242504905_Freesurface_flows_solved_by_means_of_SPH_schemes_with_numerical_diffusive_terms">δ-SPH法</a>という．δ-SPH法は数値的安定の抑制に効果的で広く用いられている．
       <br><br>
+      <div align="center">
+        <img src="../img/comparison.png" width="700" height="520"><br>
+        Normal SPH(左)とδ-SPH(右)の比較<br><br>
     <strong>境界条件</strong><br>
     　流体粒子が多孔質体内に入る際，間隙率が1.0から$n_w$に変化する．このとき間隙率を不連続に変化させるのではなく連続的に変化させる方法が一般的に用いられている．まず補間点を初期粒子間隔より細かい解像度で配置し，位置によって間隙率を定義する．次に，流体粒子が移行層(下図のTransitional zone)内にある場合，SPH補間<br><br>
      <div align="center">
